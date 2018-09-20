@@ -28,13 +28,28 @@ public class UtilTest {
 	}
 	
 	@Test
-	public void deveTestarSeOrdenacaoArray() {
-		Produto [] produtosOrder = util.ordenaProdutos(produtos);
-		assertEquals(produtosOrder[0].getPreco(), 16000, 0);
-		assertEquals(produtosOrder[1].getPreco(), 17000, 0);
-		assertEquals(produtosOrder[2].getPreco(), 46000, 0);
-		assertEquals(produtosOrder[3].getPreco(), 46000, 0);
-		assertEquals(produtosOrder[41].getPreco(), 100000, 0);
+	public void deveTestarSelectSortProduto() {
+		Produto [] produtosOrder = util.ordenaProdutosSelectSort(produtos);
+		validarOrdenacaoProduo(produtosOrder);
 	}
+	
+	@Test
+	public void deveTestarInsertSortProtuto() {
+		Produto [] produtosOrder = util.ordenaProdutosSelectSort(produtos);
+		validarOrdenacaoProduo(produtosOrder);
+	}
+
+	private void validarOrdenacaoProduo(Produto[] produto) {
+		assertEquals(produto[0].getPreco(), 16000, 0);
+		assertEquals(produto[1].getPreco(), 17000, 0);
+		assertEquals(produto[2].getPreco(), 46000, 0);
+		assertEquals(produto[3].getPreco(), 46000, 0);
+		assertEquals(produto[4].getPreco(), 100000, 0);
+	}
+	
+	
+	
+	
+	
 	
 }
