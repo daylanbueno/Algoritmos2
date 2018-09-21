@@ -15,7 +15,7 @@ public class Util {
 		return indexMaisBarato;
 	}
 
-	public Produto[] ordenaProdutosSelectSort(Produto[] produtos) {
+	public Produto[] ordenaProdutosSelectionSort(Produto[] produtos) {
 		for (int atual= 0; atual < produtos.length; atual ++) {
 			int indexMaisBarato = buscaPosicaoProdutoMenorPreco(produtos, atual, produtos.length - 1);
 			troca(produtos, atual, indexMaisBarato);
@@ -30,7 +30,7 @@ public class Util {
 		produtos[segundo] = primeiroProduto;
 	}
 	
-	public Produto[] ordenaProdutoInsertSort(Produto[] produtos) {
+	public Produto[] ordenaProdutoInsertionSort(Produto[] produtos) {
 		for (int atual = 1; atual < produtos.length; atual ++) {
 			int analise = atual;
 			while (analise > 0 && produtos[atual].getPreco() < produtos[analise].getPreco()) {

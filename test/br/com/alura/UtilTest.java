@@ -18,7 +18,6 @@ public class UtilTest {
 		produtos[2]  = new Produto("Brasilia",16000);
 		produtos[3]  = new Produto("Smart",46000);
 		produtos[4]  = new Produto("Fusca",17000);
-	
 	}
 	
 	@Test
@@ -29,13 +28,13 @@ public class UtilTest {
 	
 	@Test
 	public void deveTestarSelectSortProduto() {
-		Produto [] produtosOrder = util.ordenaProdutosSelectSort(produtos);
+		Produto [] produtosOrder = util.ordenaProdutosSelectionSort(produtos);
 		validarOrdenacaoProduo(produtosOrder);
 	}
 	
 	@Test
 	public void deveTestarInsertSortProtuto() {
-		Produto [] produtosOrder = util.ordenaProdutosSelectSort(produtos);
+		Produto [] produtosOrder = util.ordenaProdutosSelectionSort(produtos);
 		validarOrdenacaoProduo(produtosOrder);
 	}
 
@@ -46,10 +45,4 @@ public class UtilTest {
 		assertEquals(produto[3].getPreco(), 46000, 0);
 		assertEquals(produto[4].getPreco(), 100000, 0);
 	}
-	
-	
-	
-	
-	
-	
 }
