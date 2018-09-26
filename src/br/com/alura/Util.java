@@ -1,44 +1,49 @@
 package br.com.alura;
 
-import br.com.alura.modelo.Produto;
-
 public class Util {
 
-	
-	public int buscaPosicaoProdutoMenorPreco(Produto[] produtos, int pInicial, int pFim) {
-		int indexMaisBarato = pInicial;
-		for (int atual  = pInicial; atual <= pFim; atual ++) {
-			if (produtos[atual].getPreco() < produtos[indexMaisBarato].getPreco()) {
-				indexMaisBarato = atual;
+	public static Aluno[] getAlunosOrdenados(Aluno[] alunosAndre, Aluno[] alunosEduardo) {
+		Aluno[] rank = junta(alunosAndre,alunosEduardo);
+		for (Aluno aluno: rank) {
+			System.out.println(aluno);
+		}
+		return rank;
+	}
+     
+	private static Aluno[] junta(Aluno[] listaAlunos1, Aluno[] listaAlunos2) {
+		int tamanho = listaAlunos1.length + listaAlunos2.length;
+		Aluno[] resultado = new Aluno[tamanho];
+		
+		int indexAtual1 = 0;
+		int indexAtual2 = 0;
+		int atual = 0;
+		
+		while (indexAtual1 < listaAlunos1.length && indexAtual2 < listaAlunos2.length) {
+			Aluno aluno1 = listaAlunos1[indexAtual1];
+			Aluno aluno2 = listaAlunos2[indexAtual2];
+			if (aluno1.getNota() < aluno2.getNota()) {
+				resultado[atual] = aluno1;
+				indexAtual1++;
+			} else {
+				resultado[atual] = aluno2;
+				indexAtual2++;
 			}
+			atual++;
 		}
-		return indexMaisBarato;
-	}
-
-	public Produto[] ordenaProdutosSelectionSort(Produto[] produtos) {
-		for (int atual= 0; atual < produtos.length; atual ++) {
-			int indexMaisBarato = buscaPosicaoProdutoMenorPreco(produtos, atual, produtos.length - 1);
-			troca(produtos, atual, indexMaisBarato);
+		
+		while (indexAtual1 < listaAlunos1.length) {
+			resultado[atual] = listaAlunos1[indexAtual1];
+			atual ++;
+			indexAtual1++;
 		}
-		return produtos;
-	}
-
-	private void troca(Produto[] produtos, int primeiro, int segundo) {
-		Produto primeiroProduto = produtos[primeiro];
-		Produto segundoProduto = produtos[segundo];
-		produtos[primeiro] = segundoProduto;
-		produtos[segundo] = primeiroProduto;
+		
+		while (indexAtual2 < listaAlunos2.length) {
+			resultado[atual] = listaAlunos2[indexAtual2];
+			indexAtual2++;
+			atual++;
+		}
+		return resultado;
 	}
 	
-	public Produto[] ordenaProdutoInsertionSort(Produto[] produtos) {
-		for (int atual = 1; atual < produtos.length; atual ++) {
-			int analise = atual;
-			while (analise > 0 && produtos[atual].getPreco() < produtos[analise].getPreco()) {
-				troca(produtos, atual, analise);
-				analise --;
-			}
-		}
-		return produtos;
-	}
 
 }
