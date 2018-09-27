@@ -9,7 +9,51 @@ public class Util {
 		}
 		return rank;
 	}
+	
+	public static Aluno[] getAlunosOrdenados(Aluno[] alunos, int inicio, int miolo, int termino) {
+		Aluno[] rank = junta(alunos,inicio, miolo, termino);
+		for (Aluno aluno: rank) {
+			System.out.println(aluno);
+		}
+		return rank;
+	}
      
+	private static Aluno[] junta(Aluno[] alunos, int inicio, int miolo, int termino) {
+		Aluno[] resultado = new Aluno[alunos.length];
+		
+		int indexAtual1 = inicio;
+		int indexAtual2 = miolo;
+		int indexAtual = 0;
+		
+		while (indexAtual1 < miolo && indexAtual2 < termino) {
+			
+			Aluno aluno1 = alunos[indexAtual1];
+			Aluno aluno2 = alunos[indexAtual2];
+			
+			if (aluno1.getNota() < aluno2.getNota()) {
+				resultado[indexAtual] = aluno1;
+				indexAtual1 ++;
+			} else {
+				resultado[indexAtual] = aluno2;
+				indexAtual2++;
+			}
+			indexAtual++;
+		}
+		
+		while (indexAtual1 < miolo) {
+			resultado[indexAtual] = alunos[indexAtual1];
+			indexAtual1++;
+			indexAtual++;
+		}
+	
+		while (indexAtual2 < termino) {
+			resultado[indexAtual] = alunos[indexAtual2];
+			indexAtual2++;
+			indexAtual++;
+		}
+		return resultado;
+	}
+	
 	private static Aluno[] junta(Aluno[] listaAlunos1, Aluno[] listaAlunos2) {
 		int tamanho = listaAlunos1.length + listaAlunos2.length;
 		Aluno[] resultado = new Aluno[tamanho];
@@ -44,6 +88,5 @@ public class Util {
 		}
 		return resultado;
 	}
-	
 
 }
